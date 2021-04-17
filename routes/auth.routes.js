@@ -23,7 +23,7 @@ router.post('/login', async (req, res, next) => {
             return res.status(400).json();
         }
 
-        const compareHash = bcrypt.compareSync(passwor, user.passwordHash);
+        const compareHash = bcrypt.compareSync(password, user.passwordHash);
 
         if(!compareHash) {
             return res.status(400).json();
