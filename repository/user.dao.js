@@ -7,7 +7,7 @@ class UserRepository {
     }
 
     register = async (user) => {
-        const { username, password } = user;
+        const { username, fullname, email, password } = user;
         try {
             const user = await this.user.findOne({username});
 
@@ -16,7 +16,7 @@ class UserRepository {
             } else {
                 const salt = bcrypt.genSaltSync(10);
                 const passwordHash =  bcrypt.hashSync(password, salt);
-                const newUser = await this.user.create({username, passwordHash});
+                const newUser = await this.user.create({username, fullname, email, passwordHash});
 
                 return ({
                     username: newUser.username,
