@@ -1,22 +1,26 @@
-const { router } = require("express");
+const Video = require("../models/video.model");
+const fileUploader = require("../configs/cloudinary.config");
 
-//Middleware Multer
-const multer = require("multer");
-
-const videoRepo = require("../repository/videos.dao");
-
-const upload = multer({dest: "uploads/"})
-
-const router = videoRouter();
-router.get("/", async (req, res) => {
-  try {
-    const videos = await videoRepo.getAll();
-    res.status(200).json(videos);
-  } catch (Error) {
-    res.status(500).json({ message: "Error while get  videos" });
+class VideoRepository {
+  constructor(VideoModel) {
+    this.video = VideoModel;
   }
-});
+  getAll = async () => {
+    try {
+      const video = await this.video.find().populate("user");
 
-router.post("/upload",upload.single("file"),(req, res) => {
-  res.send("Video uploaded!");
-});
+      return video;
+    } catch (error) {
+      throw new Error();
+    }
+  };
+  upload = async () => {
+    try {
+      
+    } catch (error) {
+      
+    }
+  };
+}
+
+module.exports = new VideoRepository(Video);

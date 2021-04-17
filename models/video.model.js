@@ -6,7 +6,6 @@ const videoSchema = new Schema(
       type: String,
     },
     user: { type: Schema.Types.ObjectId, ref: "user" },
-    userImage: { type: Schema.Types.userimageURL, ref: "user" },
 
     title: {
       type: String,
