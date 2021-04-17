@@ -24,4 +24,4 @@ class VideoRepository {
   };
 }
 
-modelu.exports = new ProjectRepository(Video);
+modelu.exports = new VideoRepository(Video);
