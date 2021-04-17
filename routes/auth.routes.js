@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const bcrypt = require('bcryptjs/dist/bcrypt');
 const jwt = require('jsonwebtoken');
-const userRepo = required('../repository/user.dao');
+const userRepo = require('../repository/user.dao');
 
 const router = Router();
 
