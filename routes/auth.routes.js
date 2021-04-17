@@ -36,7 +36,7 @@ router.post('/login', async (req, res, next) => {
 
         const token = jwt.sign(
             payload,
-            'senhasupersecreta',
+            process.env.SECRET_JWT,
             { expiresIn: '1day'},
         )
         res.status(200).json({ payload, token });

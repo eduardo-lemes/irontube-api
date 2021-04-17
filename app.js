@@ -1,4 +1,6 @@
 require("dotenv").config();
+
+const jwt = require('jsonwebtoken');
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -17,10 +19,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //Routes
 const authRoutes = require('./routes/auth.routes');
 
-//Middleware de authenticação
 
 //Public Routes
 app.use('/auth', authRoutes);
+
+//Middleware of authentication
+const authMiddleware = require('./middlewares/auth.middleware');
+app.use(authMiddleware);
 
 //Private Routes needed JWT
 
