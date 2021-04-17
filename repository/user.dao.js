@@ -16,14 +16,26 @@ class UserRepository {
             } else {
                 const salt = bcrypt.genSaltSync(10);
                 const passwordHash =  bcrypt.hashSync(password, salt);
-                const newUser = this.user.create({username, passwordHash});
+                const newUser = await this.user.create({username, passwordHash});
 
-                return newUser;
+                return ({
+                    username: newUser.username,
+                    id: newUser._id,
+                })
             } 
         } catch (error) {
             throw new Error();
         }
-    }
+    };
+
+    findUser = async (username) => {
+        try {
+            const user = await this.user.findOne({username});
+            return user;
+        } catch (error) {
+            throw new Error();
+        }
+    };
 }
 
 module.exports = new UserRepository(User);

@@ -15,6 +15,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 //Routes
+const authRoutes = require('./routes/auth.routes');
+
+//Middleware de authenticação
+
+//Public Routes
+app.use('/auth', authRoutes);
+
+//Private Routes needed JWT
 
 // Exported app
 
