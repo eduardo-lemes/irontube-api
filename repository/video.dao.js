@@ -14,11 +14,20 @@ class VideoRepository {
       throw new Error();
     }
   };
-  upload = async () => {
+  upload = async (newVideo) => {
     try {
-      
+      const createdVideo = await this.video.create(newVideo);
+      return createdVideo;
     } catch (error) {
-      
+      throw new Error("Error uploading video");
+    }
+  };
+  findOne = async (videoId) => {
+    try {
+      const video = await this.video.findById(videoId);
+      return video;
+    } catch (error) {
+      throw new Error("Error find video");
     }
   };
 }
