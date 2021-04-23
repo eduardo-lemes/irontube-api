@@ -30,7 +30,7 @@ router.post(
         user: userID,
       };
       const video = await videoRepo.upload(newVideo);
-      res.status(201).json();
+      res.status(201).json(video);
     } catch (error) {
       res.status(500).json(error);
     }
