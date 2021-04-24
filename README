@@ -1,4 +1,4 @@
-#IronTube  Api
+# IronTube  Api
 
 IronTubeApi is a express rest api for manage your videos
 
@@ -11,7 +11,7 @@ IronTubeApi is a express rest api for manage your videos
 This Api is created to final project MERN stack on IronHack Bootcamp Out/2020
 Created by .[Eduardo Lemes, Lucas].
 
-##Tech
+## Tech
 - .[node.js].
 - .[express].
 
