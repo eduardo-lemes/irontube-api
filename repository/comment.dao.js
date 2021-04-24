@@ -1,73 +1,83 @@
-const { Error } = require('mongoose');
-const Comment = require('../models/comment.model');
+const { Error } = require("mongoose");
+const Comment = require("../models/comment.model");
 
 class CommentRepository {
   constructor(CommentModel) {
     this.comment = CommentModel;
   }
 
-  createComment = async(video, user, comment) => {
+  createComment = async (video, user, comment) => {
     try {
-      if(!video) {
-        throw new Error('Id do video não enviado');
+      if (!video) {
+        throw new Error("Id do video não enviado");
       }
-      if(!user) {
-        throw new Error('Id do user não enviado');
+      if (!user) {
+        throw new Error("Id do user não enviado");
       }
-      if(!comment) {
-        throw new Error('Comentário não enviado');
+      if (!comment) {
+        throw new Error("Comentário não enviado");
       }
 
-      const newComment = await this.comment.create({video, user, comment});
+      const newComment = await this.comment.create({ video, user, comment });
 
-      if(newComment) {
+      if (newComment) {
         return {
-          type: 'Success',
-          message: 'Post criado com sucesso.',
+          type: "Success",
+          message: "Post criado com sucesso.",
           data: comment,
-        }
+        };
       }
-      
-    }
-    catch(error) {
+    } catch (error) {
       throw new Error();
     }
-  }
+  };
 
-  editComment = async (comment) => {
+  editComment = async (id, video, user, comment) => {
     try {
+      const commentUpdate = await this.comment.updateOne(
+        {
+          _id: id,
+        },
+        { comment: comment }
+      );
 
-    const editComment = await this.comment.updateOne({video, user, comment});
-
-    if (editComment) {
-      return {
-        type: 'Success',
-        message: 'Comentário criado com sucesso.',
-        data: comment,
+      if (commentUpdate) {
+        return {
+          type: "Success",
+          message: "Comentário criado com sucesso.",
+          data: comment,
+        };
       }
-    }
-
-    } catch(error) {
+    } catch (error) {
       throw new Error();
     }
-  }
+  };
 
-  removeComment = async () => {
+  removeComment = async (id) => {
     try {
-      const removeComment = await this.comment.deleteOne({video, user, comment});
+      const removeComment = await this.comment.deleteOne({
+        _id: id,
+      });
 
       if (removeComment) {
         return {
-          type: 'Success',
-          message: 'Comentário removido com sucesso.',
-          data: '',
-        }
+          type: "Success",
+          message: "Comentário removido com sucesso.",
+          data: "",
+        };
       }
-
-    } catch(error) {
+    } catch (error) {
       throw new Error();
     }
-  }
+  };
+  getCommentsByVideo = async (videoId) => {
+    try {
+      const comments = await this.comment.find({ video: videoId });
+      return comments;
+    } catch (error) {
+      throw new Error()
+    }
+  };
 }
 
 module.exports = new CommentRepository(Comment);
