@@ -47,4 +47,14 @@ router.get("/view/:videoId", async (req, res) => {
   }
 });
 
+router.delete("/:IdVideo", async (req, res) => {
+  try {
+    const { videoDel } = req.params;
+    const video = await videoRepo.delete(videoDel);
+    res.status(200).json(video);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 module.exports = router;

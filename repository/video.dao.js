@@ -30,6 +30,14 @@ class VideoRepository {
       throw new Error("Error find video");
     }
   };
+  deleteOne = async (videoDel) => {
+    try {
+      const video = await this.video.findByIdAndRemove(videoDel);
+      return video;
+    } catch (error) {
+      throw new Error("Error delete video")
+    }
+  };
 }
 
 module.exports = new VideoRepository(Video);
