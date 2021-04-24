@@ -9,24 +9,15 @@ class CommentRepository {
   createComment = async(video, user, comment) => {
     try {
       if(!video) {
-        return {
-          type: 'Error',
-          message: 'Id do video não enviado'
-        }
+        throw new Error('Id do video não enviado');
       }
 
       if(!user) {
-        return {
-          type: 'Error',
-          message: 'Id do user não enviado'
-        }
+        throw new Error('Id do user não enviado');
       }
 
       if(!comment) {
-        return {
-          type: 'Error',
-          message: 'Id do comment não enviado'
-        }
+        throw new Error('Comentário não enviado');
       }
 
       const newComment = await this.comment.create({video, user, comment});
@@ -39,13 +30,6 @@ class CommentRepository {
         }
       }
 
-      if(!newComment) {
-        return {
-          type: 'Error',
-          message: 'Erro ao criar comentário',
-          data: newComment,
-        }
-      }
     }
     catch(error) {
       throw new Error();

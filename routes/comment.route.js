@@ -1,15 +1,23 @@
 const { Router } = require('express');
-const Comment  = require('../models/comment.model');
-const Auth  = require('../middlewares/auth.middleware');
+const commentDao  = require('../repository/comment.dao');
+const auth  = require('../middlewares/auth.middleware');
+
 
 const router = Router();
 
 router.post("/saveComment", async (req, res, next) => {
   try {
-    const comment = new Comment(req.body);
-    comment.save();
-    res.status(200).json(comment);
+    const {video, user, comment } = req.body;
+    const commentSuccess = await commentDao.createComment(video, user, comment);
+
+    res.status(201).json(commentSuccess);
   } catch (error) {
-    restart.status(500).json({message: 'Error while register your comment. Try again later.'});
+    console.log(error);
+    res.status(500).json(error);
+    // res.status(500).json({
+    //   message: 'Error while register your comment. Try again later.'
+    // });
   }
 });
+
+module.exports = router;

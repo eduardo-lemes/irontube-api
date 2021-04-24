@@ -18,10 +18,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //Routes
 const authRoutes = require("./routes/auth.routes");
 const videosRoutes = require("./routes/video.routes");
+const commentRoutes = require("./routes/comment.route");
 
 //Public Routes
 app.use("/auth", authRoutes);
 app.use("/videos", videosRoutes);
+app.use("/comments", commentRoutes);
+app.use();
 
 //Middleware of authentication
 const authMiddleware = require("./middlewares/auth.middleware");
