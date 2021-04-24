@@ -28,7 +28,7 @@ class CommentRepository {
           message: 'Id do comment não enviado'
         }
       }
-
+cd .
       const newComment = await this.comment.create({video, user, comment});
 
       if(newComment) {
