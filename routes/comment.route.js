@@ -16,7 +16,15 @@ router.post("/saveComment", async (req, res, next) => {
   }
 });
 
-router.get("");
+router.get("/list/:videoId", async (req, res, next) => {
+  try {
+    const { videoId } = req.params;
+    const showList = await commentDao.getCommentsByVideo(videoId);
+    res.status(200).json(showList);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 
 router.put("/editComment/:id", async (req, res, next) => {
   try {
@@ -30,7 +38,7 @@ router.put("/editComment/:id", async (req, res, next) => {
       comment
     );
 
-    res.status(201).json(editCommentSuccess);
+    res.status(201).json(editCommentSuccess.data);
   } catch (error) {
     res.status(500).json(error);
   }
@@ -41,7 +49,7 @@ router.delete("/removeComment/:id", async (req, res, next) => {
     const { id } = req.params;
     const removeCommentSuccess = await commentDao.removeComment(id);
 
-    res.status(201).json(removeCommentSuccess);
+    res.status(201).json(removeCommentSuccess.data);
   } catch (error) {
     res.status(500).json(error);
   }

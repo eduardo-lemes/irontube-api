@@ -70,6 +70,14 @@ class CommentRepository {
       throw new Error();
     }
   };
+  getCommentsByVideo = async (videoId) => {
+    try {
+      const comments = await this.comment.find({ video: videoId });
+      return comments;
+    } catch (error) {
+      throw new Error()
+    }
+  };
 }
 
 module.exports = new CommentRepository(Comment);
