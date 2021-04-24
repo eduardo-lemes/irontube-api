@@ -31,6 +31,7 @@ class VideoRepository {
     }
   };
   deleteOne = async (videoDel) => {
+    console.log(videoDel)
     try {
       const video = await this.video.findByIdAndRemove(videoDel);
       return video;
