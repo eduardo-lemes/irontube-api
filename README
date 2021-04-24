@@ -1,0 +1,35 @@
+#IronTube  Api
+
+IronTubeApi is a express rest api for manage your videos
+
+## Features
+- signup and login
+- Video Upload
+- Videoe delete
+- Comments and similar routes
+
+This Api is created to final project MERN stack on IronHack Bootcamp Out/2020
+Created by .[Eduardo Lemes, Lucas].
+
+##Tech
+- .[node.js].
+- .[express].
+
+##Install 
+Clone this  repo
+In the source folder add an .env file with this variables:
+
+MONGO_URI - for your atlas cluster or local mongodb
+SECRET_JWT - for your jwt secret
+CLOUDINARY_NAME 
+CLOUDINARY_KEY
+CLOUDINARY_SECRET
+
+Install the dependencies and devDependencies and start the server.
+
+```sh
+npm i
+npm run dev
+```
+
+

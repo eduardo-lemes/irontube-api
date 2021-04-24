@@ -30,7 +30,7 @@ router.post(
         user: userID,
       };
       const video = await videoRepo.upload(newVideo);
-      res.status(201).json();
+      res.status(201).json(video);
     } catch (error) {
       res.status(500).json(error);
     }
@@ -41,6 +41,16 @@ router.get("/view/:videoId", async (req, res) => {
   try {
     const { videoId } = req.params;
     const video = await videoRepo.findOne(videoId);
+    res.status(200).json(video);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+router.delete("/:IdVideo", async (req, res) => {
+  try {
+    const { videoDel } = req.params;
+    const video = await videoRepo.delete(videoDel);
     res.status(200).json(video);
   } catch (error) {
     res.status(500).json(error);
