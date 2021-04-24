@@ -24,7 +24,7 @@ const commentRoutes = require("./routes/comment.route");
 app.use("/auth", authRoutes);
 app.use("/videos", videosRoutes);
 app.use("/comments", commentRoutes);
-app.use();
+
 
 //Middleware of authentication
 const authMiddleware = require("./middlewares/auth.middleware");
