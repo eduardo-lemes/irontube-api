@@ -14,20 +14,20 @@ router.get("/", async (req, res) => {
 });
 
 router.post(
-  "/upload/:userID",
+  "/upload/:userId",
   uploadCloud.single("video"),
   async (req, res) => {
     try {
-      const { userID } = req.params;
+      const { userId } = req.params;
       const { title, description } = req.body;
-      //   console.log(title, description);
-      //   console.log(req.file)
+      // console.log(title, description);
+      // console.log(req.file)
       const videoURL = req.file.path;
       const newVideo = {
         videoURL,
         title,
         description,
-        user: userID,
+        user: userId,
       };
       const video = await videoRepo.upload(newVideo);
       res.status(201).json(video);
@@ -48,9 +48,12 @@ router.get("/view/:videoId", async (req, res) => {
 });
 
 router.delete("/:IdVideo", async (req, res) => {
+  const { IdVideo } = req.params;
+  console.log(IdVideo);
   try {
-    const { videoDel } = req.params;
-    const video = await videoRepo.delete(videoDel);
+    const video = await videoRepo.deleteOne(IdVideo);
+    console.log(video);
+
     res.status(200).json(video);
   } catch (error) {
     res.status(500).json(error);
