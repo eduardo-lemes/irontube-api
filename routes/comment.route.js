@@ -14,9 +14,28 @@ router.post("/saveComment", async (req, res, next) => {
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
-    // res.status(500).json({
-    //   message: 'Error while register your comment. Try again later.'
-    // });
+  }
+});
+
+router.put("/editComment/:id", async (req, res, next) => {
+  try {
+    const { video, user, comment } = req.body;
+    const editCommentSuccess = await commentDao.editComment(video, user, comment);
+
+    res.status(201).json(editCommentSuccess);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+router.delete("/removeComment/:id", async (req, res, next) => {
+  try {
+    const { video, user, comment } = req.body;
+    const removeCommentSuccess = await commentDao.removeComment(video, user, comment);
+
+    res.status(201).json(removeCommentSuccess);
+  } catch (error) {
+    res.status(500).json(error);
   }
 });
 
