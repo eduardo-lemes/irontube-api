@@ -21,9 +21,9 @@ In the source folder add an .env file with this variables:
 
 MONGO_URI - for your atlas cluster or local mongodb
 SECRET_JWT - for your jwt secret
-CLOUDINARY_NAME 
-CLOUDINARY_KEY
-CLOUDINARY_SECRET
+CLOUDINARY_NAME - Cloudinary name
+CLOUDINARY_KEY - Cloudnary key
+CLOUDINARY_SECRET - Cloudinary Secret
 
 Install the dependencies and devDependencies and start the server.
 
