@@ -11,7 +11,7 @@ require("./configs/db.config");
 const app = express();
 
 //Middlewares
-
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
