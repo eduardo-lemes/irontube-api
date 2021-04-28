@@ -1,29 +1,26 @@
-# IronTube  Api
+# IronTube Api
 
-IronTubeApi is a express rest api for manage your videos
+IronTubeApi is a express rest api where you can upload your videos, comment and learn from other users.
+Created by: Eduardo Lemes, Anderson Lucas
 
 ## Features
-- signup and login
-- Video Upload
-- Videoe delete
-- Comments and similar routes
 
-This Api is created to final project MERN stack on IronHack Bootcamp Out/2020
-Created by .[Eduardo Lemes, Lucas].
+- Upload videos
+- Add Comments on videos
 
 ## Tech
 - .[node.js].
 - .[express].
 
-##Install 
-Clone this  repo
+## Installation
+
+Clone this repo
+
 In the source folder add an .env file with this variables:
 
 MONGO_URI - for your atlas cluster or local mongodb
-SECRET_JWT - for your jwt secret
-CLOUDINARY_NAME - Cloudinary name
-CLOUDINARY_KEY - Cloudnary key
-CLOUDINARY_SECRET - Cloudinary Secret
+TOKEN_SECRET - for your jwt secret
+EXPIRATION_AUTH_TOKEN - for setting your expiration time for jwt
 
 Install the dependencies and devDependencies and start the server.
 
@@ -31,5 +28,18 @@ Install the dependencies and devDependencies and start the server.
 npm i
 npm run dev
 ```
+**`http://localhost:5000/api`**.
+
+You can test with:
+**`https://rest-api-irontube.herokuapp.com`**
 
 
+The common endpoints are the following:
+
+| Method | Endpoint                  | Payload                                    | Response              | Action                                                         |
+| ------ | ------------------------- | ------------------------------------------ | --------------------- | -------------------------------------------------------------- |
+| POST   | /auth/signup              | {"username":String, "password:String",}    | -                     | Return JWT to private routes                                   |
+| POST   | /auth/login               | {"username":String,"password":String}      | Auth JWD              | Create new user                                                |
+| GET    | /videos/list/             | -                                          | {video}               | Get all videos form the DB                                     |
+| GET    | /videos/view/:id          | -                                          | {video}               | Get video details                                              |                               
+| POST   | /videos/upload            | {"title": String, "description":String}    | {video}               | Post video on  DB                                              |
